@@ -1,8 +1,8 @@
 import React from "react";
 import img1 from "../assets/hoho.jpg";
 import img2 from "../assets/khushu.jpg";
-import img3 from "../assets/img6.jpg";
-import img4 from "../assets/img5.jpg";
+import img3 from "../assets/komal.jpg";
+import img4 from "../assets/khushi.jpg";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
