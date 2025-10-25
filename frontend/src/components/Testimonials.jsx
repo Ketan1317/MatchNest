@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 import avatar1 from "../assets/img1.jpg";
@@ -44,6 +44,13 @@ const testimonials = [
 const TestimonialSlider = () => {
   const [index, setIndex] = useState(0);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   const prevSlide = () =>
     setIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
 
@@ -51,121 +58,68 @@ const TestimonialSlider = () => {
     setIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
 
   return (
-    <div style={{ width: "100%", position: "relative", overflow: "hidden" }}>
-      {/* ✅ Heading is separate */}
-      <h2
-        style={{
-          textAlign: "center",
-          fontSize: "46px",
-          fontWeight: "bold",
-          margin: "20px 0",
-          color: "#333",
-          position: "relative",
-          zIndex: 10,
-        }}
-      >
+    <section className="relative w-full overflow-hidden">
+      <h2 className="text-center text-4xl md:text-5xl font-bold mt-10 mb-8 bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent">
         What People Say
       </h2>
 
-      {/* ✅ Slider */}
       <div
-        style={{
-          display: "flex",
-          transition: "transform 0.7s ease-in-out",
-          transform: `translateX(-${index * 100}%)`,
-          width: "100%",
-        }}
+        className="flex transition-transform duration-700 ease-in-out"
+        style={{ transform: `translateX(-${index * 100}%)` }}
       >
         {testimonials.map((t, i) => (
           <div
             key={i}
-            style={{
-              flexShrink: 0,
-              width: "100%",
-              height: "100vh", // full screen height
-              position: "relative",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            className="flex-shrink-0 w-full h-[100vh] relative flex items-center justify-center"
           >
-            {/* ✅ Fullscreen Background Image */}
             <img
               src={t.img}
               alt={t.name}
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-              }}
-            />
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                backgroundColor: "rgba(0,0,0,0.5)",
-              }}
+              className="absolute inset-0 w-full h-full object-cover"
             />
 
-            {/* ✅ Centered Content */}
-            <div
-              style={{
-                position: "relative",
-                textAlign: "center",
-                maxWidth: "700px",
-                padding: "20px",
-                color: "#fff",
-              }}
-            >
-              <p style={{ fontSize: "26px", fontWeight: "600", marginBottom: "20px" }}>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/70"></div>
+
+            <div className="relative z-10 text-center max-w-2xl px-6 text-white">
+              <p className="text-2xl md:text-3xl font-semibold mb-6 leading-relaxed">
                 “{t.text}”
               </p>
-              <h3 style={{ fontSize: "22px", fontWeight: "bold" }}>— {t.name}</h3>
+              <h3 className="text-lg md:text-xl font-bold text-pink-300">
+                — {t.name}
+              </h3>
             </div>
           </div>
         ))}
       </div>
 
-      {/* ✅ Navigation Arrows */}
+      {/* Navigation Buttons */}
       <button
         onClick={prevSlide}
-        style={{
-          position: "absolute",
-          top: "50%",
-          left: "20px",
-          transform: "translateY(-50%)",
-          background: "rgba(0,0,0,0.5)",
-          border: "none",
-          padding: "12px",
-          borderRadius: "50%",
-          color: "#fff",
-          cursor: "pointer",
-          zIndex: 20,
-        }}
+        className="absolute top-1/2 left-6 -translate-y-1/2 bg-black/50 hover:bg-black/70 p-3 rounded-full text-white transition-all z-20"
       >
-        <FaChevronLeft size={20} />
+        <FaChevronLeft size={22} />
       </button>
+
       <button
         onClick={nextSlide}
-        style={{
-          position: "absolute",
-          top: "50%",
-          right: "20px",
-          transform: "translateY(-50%)",
-          background: "rgba(0,0,0,0.5)",
-          border: "none",
-          padding: "12px",
-          borderRadius: "50%",
-          color: "#fff",
-          cursor: "pointer",
-          zIndex: 20,
-        }}
+        className="absolute top-1/2 right-6 -translate-y-1/2 bg-black/50 hover:bg-black/70 p-3 rounded-full text-white transition-all z-20"
       >
-        <FaChevronRight size={20} />
+        <FaChevronRight size={22} />
       </button>
-    </div>
+
+      {/* Dots Indicator */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-3 z-20">
+        {testimonials.map((_, i) => (
+          <div
+            key={i}
+            onClick={() => setIndex(i)}
+            className={`w-3 h-3 rounded-full cursor-pointer transition-all ${
+              index === i ? "bg-pink-500 scale-110" : "bg-white/50"
+            }`}
+          ></div>
+        ))}
+      </div>
+    </section>
   );
 };
 

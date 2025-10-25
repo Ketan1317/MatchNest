@@ -10,7 +10,6 @@ import rightHand from "../assets/right.png";
 
 const Features = () => {
   const features = [
-    
     {
       title: "Video Calling",
       desc: "Build genuine connections through secure, high-quality video calls with your matches before taking the next step.",
@@ -21,7 +20,6 @@ const Features = () => {
       desc: "Engage instantly with matches using our seamless messaging system, complete with emojis and interactive reactions.",
       img: ChatImg,
     },
-    
     {
       title: "Swipe Feature",
       desc: "Discover new people effortlessly with our intuitive swipe feature — swipe right to like, left to pass.",
@@ -35,68 +33,27 @@ const Features = () => {
   ];
 
   return (
-    <section style={{ padding: "20px", background: "#ffffff", position: "relative", overflow: "hidden" }}>
+    <section className="relative overflow-hidden bg-white py-8">
       {/* Header Section */}
-      <div
-        style={{
-          height: "80vh",
-          position: "relative",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-          marginBottom: "40px",
-        }}
-      >
+      <div className="relative mb-10 flex h-[80vh] items-center justify-center overflow-hidden">
         {/* Left Hand */}
         <img
           src={leftHand}
           alt="Left Hand"
-          style={{
-            position: "absolute",
-            left: "0",
-            top: "50%",
-            transform: "translateY(-50%)",
-            height: "450px",
-            animation: "slideInLeft 1.2s ease-out forwards",
-          }}
+          className="absolute left-0 top-1/2 h-[450px] -translate-y-1/2 animate-slideInLeft"
         />
 
-        <div
-          style={{
-            textAlign: "center",
-            zIndex: 2,
-            maxWidth: "850px",
-            padding: "0 30px",
-          }}
-        >
-          <h1
-            style={{
-              fontSize: "60px",
-              fontFamily: "Michroma, sans-serif",
-              fontWeight: "900",
-              marginBottom: "25px",
-              background: "linear-gradient(90deg, #f43f5e, #db2777)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              animation: "fadeIn 1.5s ease-out",
-            }}
-          >
+        {/* Header Content */}
+        <div className="z-10 max-w-[850px] px-6 text-center">
+          <h1 className="mb-6 text-5xl font-extrabold font-[Michroma] md:text-6xl bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent animate-fadeIn">
             Discover Our Features
           </h1>
-          <p
-            style={{
-              fontSize: "22px",
-              fontWeight: "500",
-              color: "#374151",
-              lineHeight: "1.8",
-            }}
-          >
+          <p className="text-lg font-medium leading-relaxed text-gray-700 md:text-xl">
             Explore how <strong>MatchNest</strong> helps you connect, chat, and
-            discover your ideal partner with innovative tools designed for
-            trust, meaningful relationships, and a seamless experience. From
-            smart matchmaking to secure interactions, everything is built to
-            bring people closer with confidence.
+            discover your ideal partner with innovative tools designed for trust
+            and meaningful relationships. From smart matchmaking to secure
+            interactions, everything is built to bring people closer with
+            confidence.
           </p>
         </div>
 
@@ -104,111 +61,31 @@ const Features = () => {
         <img
           src={rightHand}
           alt="Right Hand"
-          style={{
-            position: "absolute",
-            right: "0",
-            top: "50%",
-            transform: "translateY(-50%)",
-            height: "450px",
-            animation: "slideInRight 1.2s ease-out forwards",
-          }}
+          className="absolute right-0 top-1/2 h-[450px] -translate-y-1/2 animate-slideInRight"
         />
       </div>
 
-      {/* Features Stacks with Parallax */}
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "40px 20px",
-          position: "relative",
-          minHeight: "80vh",
-        }}
-      >
+      {/* Features List */}
+      <div className="relative mx-auto min-h-[80vh] max-w-[1200px] px-5 py-10">
         {features.map((feature, index) => (
           <div
             key={index}
-            style={{
-              height: "80vh",
-              position: "relative",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              background: index % 2 === 0 ? "#f9fafb" : "#ffffff",
-              borderRadius: "15px",
-              marginBottom: "40px",
-              padding: "40px",
-              boxShadow: "0 4px 12px rgba(0,0,0,0.1)",
-              overflow: "hidden",
-              transition: "transform 0.3s ease",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.02)")}
-            onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")}
+            className={`relative mb-10 flex min-h-[80vh] flex-col items-center justify-center overflow-hidden rounded-xl p-10 shadow-lg transition-transform duration-300 hover:scale-[1.02] ${
+              index % 2 === 0 ? "bg-gray-50" : "bg-white"
+            }`}
           >
             {/* Parallax Background */}
             <div
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                width: "100%",
-                height: "100%",
-                backgroundImage: `url(${feature.img})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-                backgroundAttachment: "fixed",
-                zIndex: 0,
-                transform: "translateZ(0)",
-              }}
-            />
-            <div
-              style={{
-                position: "relative",
-                zIndex: 1,
-                textAlign: "center",
-                width: "100%",
-                padding: "20px",
-                background: "rgba(255, 255, 255, 0.8)",
-                borderRadius: "10px",
-              }}
-            >
-              <h2
-                style={{
-                  fontSize: "42px",
-                  fontWeight: "900",
-                  marginBottom: "24px",
-                  lineHeight: "1.2",
-                  background:
-                    "linear-gradient(90deg, #ec4899, #8b5cf6, #3b82f6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundSize: "200% auto",
-                  animation: "shine 6s linear infinite",
-                  cursor: "default",
-                }}
-              >
+              className="absolute inset-0 -z-10 bg-cover bg-center bg-fixed"
+              style={{ backgroundImage: `url(${feature.img})` }}
+            ></div>
+
+            {/* Content Box */}
+            <div className="relative z-10 w-full max-w-3xl rounded-lg bg-white/80 p-5 text-center backdrop-blur-sm">
+              <h2 className="mb-6 text-4xl font-extrabold leading-tight bg-gradient-to-r from-pink-500 via-violet-500 to-blue-500 bg-clip-text text-transparent animate-shine cursor-default">
                 {feature.title}
               </h2>
-              <p
-                style={{
-                  fontSize: "20px",
-                  fontWeight: "500",
-                  lineHeight: "1.8",
-                  color: "#4b5563",
-                  maxWidth: "640px",
-                  margin: "0 auto",
-                  transition: "all 0.4s ease",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "scale(1.02)";
-                  e.currentTarget.style.color = "#111827";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "scale(1)";
-                  e.currentTarget.style.color = "#4b5563";
-                }}
-              >
+              <p className="mx-auto max-w-2xl text-lg font-medium leading-relaxed text-gray-600 transition-all duration-300 hover:scale-[1.02] hover:text-gray-900">
                 {feature.desc}
               </p>
             </div>
@@ -216,10 +93,11 @@ const Features = () => {
         ))}
       </div>
 
+      {/* Animations */}
       <style>{`
-        @keyframes fadeIn { 
-          0% { opacity: 0; transform: translateY(20px); } 
-          100% { opacity: 1; transform: translateY(0); } 
+        @keyframes fadeIn {
+          0% { opacity: 0; transform: translateY(20px); }
+          100% { opacity: 1; transform: translateY(0); }
         }
         @keyframes slideInLeft {
           0% { transform: translateX(-100px); opacity: 0; }
@@ -233,21 +111,18 @@ const Features = () => {
           0% { background-position: 0% center; }
           100% { background-position: 200% center; }
         }
-        @media (max-width: 768px) {
-          h1 {
-            font-size: 32px !important;
-            white-space: normal !important;
-          }
-          div[style*="height: 80vh"] {
-            height: auto !important;
-            padding: 20px !important;
-          }
-          p[style*="font-size: 20px"] {
-            font-size: 16px !important;
-          }
-          div[style*="backgroundAttachment: fixed"] {
-            backgroundAttachment: scroll !important;
-          }
+        .animate-fadeIn {
+          animation: fadeIn 1.5s ease-out forwards;
+        }
+        .animate-slideInLeft {
+          animation: slideInLeft 1.2s ease-out forwards;
+        }
+        .animate-slideInRight {
+          animation: slideInRight 1.2s ease-out forwards;
+        }
+        .animate-shine {
+          background-size: 200% auto;
+          animation: shine 6s linear infinite;
         }
       `}</style>
     </section>

@@ -3,49 +3,31 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from "react-icons/f
 
 const Footer = () => {
   return (
-    <footer style={{
-      backgroundColor: "#fff5f7",
-      color: "#374151",
-      padding: "40px 60px",
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "flex-start",
-      flexWrap: "wrap",
-      boxShadow: "0 -4px 20px rgba(0,0,0,0.05)"
-    }}>
-      <div style={{ flex: "1 1 250px", marginBottom: "20px" }}>
-        <h2 style={{
-          fontFamily: "'Rock Salt', cursive",
-          fontSize: "30px",
-          fontWeight: "900",
-          color: "#f43f5e",
-          marginBottom: "8px"
-        }}>
+    <footer className="flex flex-wrap justify-between items-start bg-rose-50 text-gray-700 px-10 py-10 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
+      
+      {/* Brand Section */}
+      <div className="flex-1 min-w-[250px] mb-6">
+        <h2 className="font-['Rock_Salt'] text-3xl font-extrabold text-rose-500 mb-2">
           MatchNest
         </h2>
-        <p style={{ fontSize: "16px", fontWeight: "600", color: "#db2777", maxWidth: "220px" }}>
+        <p className="text-pink-600 font-semibold text-base max-w-[220px]">
           Connecting hearts, creating futures.
         </p>
       </div>
 
-      <div style={{
-        flex: "2 1 500px",
-        display: "flex",
-        justifyContent: "space-between",
-        flexWrap: "wrap",
-        gap: "40px"
-      }}>
+      {/* Links Section */}
+      <div className="flex-2 flex justify-between flex-wrap gap-10 min-w-[300px]">
+        {/* Company */}
         <div>
-            
-          <h4 style={{ fontSize: "18px", fontWeight: "800", color: "#f43f5e", marginBottom: "12px",fontFamily: "Michroma, sans-serif", }}>Company</h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {["About Us", "Careers", "Blog"].map(item => (
-              <li key={item} style={{ marginBottom: "10px" }}>
+          <h4 className="text-lg font-extrabold text-rose-500 mb-3 font-[Michroma]">
+            Company
+          </h4>
+          <ul className="space-y-2">
+            {["About Us", "Careers", "Blog"].map((item) => (
+              <li key={item}>
                 <a
                   href="#"
-                  style={{ color: "#db2777", textDecoration: "none", fontWeight: "700", fontSize: "16px", transition: "color 0.3s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = "#f43f5e"}
-                  onMouseLeave={(e) => e.currentTarget.style.color = "#db2777"}
+                  className="text-pink-600 font-bold text-base transition-colors duration-300 hover:text-rose-500"
                 >
                   {item}
                 </a>
@@ -54,16 +36,17 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Support */}
         <div>
-          <h4 style={{ fontSize: "18px", fontWeight: "800", color: "#f43f5e", marginBottom: "12px",fontFamily: "Michroma, sans-serif", }}>Support</h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {["Contact", "FAQs", "Live Chat"].map(item => (
-              <li key={item} style={{ marginBottom: "10px" }}>
+          <h4 className="text-lg font-extrabold text-rose-500 mb-3 font-[Michroma]">
+            Support
+          </h4>
+          <ul className="space-y-2">
+            {["Contact", "FAQs", "Live Chat"].map((item) => (
+              <li key={item}>
                 <a
                   href="#"
-                  style={{ color: "#db2777", textDecoration: "none", fontWeight: "700", fontSize: "16px", transition: "color 0.3s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = "#f43f5e"}
-                  onMouseLeave={(e) => e.currentTarget.style.color = "#db2777"}
+                  className="text-pink-600 font-bold text-base transition-colors duration-300 hover:text-rose-500"
                 >
                   {item}
                 </a>
@@ -72,16 +55,17 @@ const Footer = () => {
           </ul>
         </div>
 
+        {/* Legal */}
         <div>
-          <h4 style={{ fontSize: "18px", fontWeight: "800", color: "#f43f5e", marginBottom: "12px" ,fontFamily: "Michroma, sans-serif",}}>Legal</h4>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(item => (
-              <li key={item} style={{ marginBottom: "10px" }}>
+          <h4 className="text-lg font-extrabold text-rose-500 mb-3 font-[Michroma]">
+            Legal
+          </h4>
+          <ul className="space-y-2">
+            {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (
+              <li key={item}>
                 <a
                   href="#"
-                  style={{ color: "#db2777", textDecoration: "none", fontWeight: "700", fontSize: "16px", transition: "color 0.3s" }}
-                  onMouseEnter={(e) => e.currentTarget.style.color = "#f43f5e"}
-                  onMouseLeave={(e) => e.currentTarget.style.color = "#db2777"}
+                  className="text-pink-600 font-bold text-base transition-colors duration-300 hover:text-rose-500"
                 >
                   {item}
                 </a>
@@ -91,28 +75,21 @@ const Footer = () => {
         </div>
       </div>
 
-      <div style={{
-        width: "100%",
-        marginTop: "40px",
-        display: "flex",
-        justifyContent: "center",
-        gap: "25px",
-        fontSize: "22px"
-      }}>
+      {/* Social Icons */}
+      <div className="w-full mt-10 flex justify-center gap-6 text-2xl">
         {[FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn].map((Icon, index) => (
           <a
             key={index}
             href="#"
-            style={{ color: "#f43f5e", transition: "color 0.3s" }}
-            onMouseEnter={(e) => e.currentTarget.style.color = "#db2777"}
-            onMouseLeave={(e) => e.currentTarget.style.color = "#f43f5e"}
+            className="text-rose-500 transition-colors duration-300 hover:text-pink-600"
           >
             <Icon />
           </a>
         ))}
       </div>
 
-      <p style={{ fontSize: "14px", fontWeight: "600", color: "#9d174d", marginTop: "20px", textAlign: "center", width: "100%" }}>
+      {/* Copyright */}
+      <p className="w-full mt-5 text-center text-sm font-semibold text-rose-800">
         &copy; {new Date().getFullYear()} MatchNest. All rights reserved.
       </p>
     </footer>

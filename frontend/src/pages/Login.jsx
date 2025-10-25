@@ -2,187 +2,61 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div
-      style={{
-        display: "flex",
-        height: "100vh",
-        width: "100vw",
-        overflow: "hidden",
-      }}
-    >
-      <div
-        style={{
-          width: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background:
-            "linear-gradient(to bottom right, #ec4899, #e11d48, #f87171)",
-          animation: "slide-in-left 0.8s ease-out forwards",
-        }}
-      >
-        <h1
-          className='font-["Rock_Salt",cursive]'
-          style={{
-            color: "#fff",
-            fontSize: "68px",
-            fontWeight: "bold",
-            textShadow: "0 2px 6px rgba(0,0,0,0.4)",
-          }}
-        >
+    <div className="flex h-screen w-screen overflow-hidden">
+      {/* Left Side - Brand */}
+      <div className="w-1/2 flex items-center justify-center bg-gradient-to-br from-pink-500 via-pink-600 to-red-400 animate-slide-in-left">
+        <h1 className="font-[Rock_Salt] text-white text-5xl md:text-6xl font-bold drop-shadow-lg">
           MatchNest
         </h1>
       </div>
 
-      <div
-        style={{
-          width: "50%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          background: "linear-gradient(to bottom, #fdf2f8, #ffffff)",
-          animation: "slide-in-right 0.8s ease-out forwards",
-          padding: "20px",
-        }}
-      >
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "420px",
-            background: "linear-gradient(to bottom right, #ffffff, #fff5f7)",
-            boxShadow: "0 8px 20px rgba(236,72,153,0.25)",
-            borderRadius: "20px",
-            padding: "32px",
-            transition: "transform 0.3s, box-shadow 0.3s",
-          }}
-        >
-          <h2
-            style={{
-              fontSize: "28px",
-              fontWeight: "bold",
-              marginBottom: "25px",
-              textAlign: "center",
-              color: "transparent",
-              background: "linear-gradient(to right, #e11d48, #ec4899)",
-              WebkitBackgroundClip: "text",
-              backgroundClip: "text",
-              letterSpacing: "1px",
-            }}
-          >
+      {/* Right Side - Login Form */}
+      <div className="w-1/2 flex items-center justify-center bg-gradient-to-b from-pink-50 to-white p-5 animate-slide-in-right">
+        <div className="w-full max-w-md bg-gradient-to-br from-white to-pink-50 shadow-lg rounded-2xl p-8 transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+          <h2 className="text-2xl font-bold mb-6 text-center text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-pink-500 tracking-wide">
             Welcome Back
           </h2>
 
-          <form style={{ marginBottom: "20px" }}>
+          <form className="space-y-5">
             {/* Email */}
-            <div style={{ marginBottom: "18px" }}>
-              <label
-                style={{
-                  display: "block",
-                  color: "#444",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
+            <div>
+              <label className="block text-gray-600 text-sm font-semibold mb-1">
                 Email
               </label>
               <input
                 type="email"
                 placeholder="Enter your email"
-                style={{
-                  width: "100%",
-                  marginTop: "8px",
-                  padding: "12px",
-                  border: "1px solid #ddd",
-                  borderRadius: "24px",
-                  outline: "none",
-                  color: "#333",
-                  fontSize: "14px",
-                  transition: "all 0.2s",
-                }}
-                onFocus={(e) => (e.target.style.border = "1px solid #ec4899")}
-                onBlur={(e) => (e.target.style.border = "1px solid #ddd")}
                 required
+                className="w-full px-4 py-3 border border-gray-300 rounded-full outline-none transition focus:border-pink-500 focus:ring focus:ring-pink-200"
               />
             </div>
 
             {/* Password */}
-            <div style={{ marginBottom: "18px" }}>
-              <label
-                style={{
-                  display: "block",
-                  color: "#444",
-                  fontSize: "14px",
-                  fontWeight: "600",
-                }}
-              >
+            <div>
+              <label className="block text-gray-600 text-sm font-semibold mb-1">
                 Password
               </label>
               <input
                 type="password"
                 placeholder="Enter your password"
-                style={{
-                  width: "100%",
-                  marginTop: "8px",
-                  padding: "12px",
-                  border: "1px solid #ddd",
-                  borderRadius: "24px",
-                  outline: "none",
-                  color: "#333",
-                  fontSize: "14px",
-                  transition: "all 0.2s",
-                }}
-                onFocus={(e) => (e.target.style.border = "1px solid #ec4899")}
-                onBlur={(e) => (e.target.style.border = "1px solid #ddd")}
                 required
+                className="w-full px-4 py-3 border border-gray-300 rounded-full outline-none transition focus:border-pink-500 focus:ring focus:ring-pink-200"
               />
             </div>
 
             <button
               type="submit"
-              style={{
-                width: "100%",
-                padding: "12px",
-                background: "linear-gradient(to right, #e11d48, #ec4899)",
-                color: "#fff",
-                borderRadius: "24px",
-                fontWeight: "bold",
-                fontSize: "16px",
-                border: "none",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-              }}
-              onMouseOver={(e) => {
-                e.target.style.transform = "scale(1.03)";
-                e.target.style.boxShadow = "0 6px 14px rgba(236,72,153,0.5)";
-              }}
-              onMouseOut={(e) => {
-                e.target.style.transform = "scale(1)";
-                e.target.style.boxShadow = "none";
-              }}
+              className="w-full py-3 bg-gradient-to-r from-pink-600 to-pink-500 text-white rounded-full font-bold text-lg transition-transform duration-300 hover:scale-105 hover:shadow-lg"
             >
               Log In
             </button>
           </form>
 
-          <p
-            style={{
-              marginTop: "20px",
-              textAlign: "center",
-              fontSize: "14px",
-              color: "#555",
-            }}
-          >
+          <p className="mt-5 text-center text-gray-600 text-sm">
             New to MatchNest?{" "}
             <a
               href="/signup"
-              style={{
-                color: "#e11d48",
-                fontWeight: "600",
-                textDecoration: "none",
-                transition: "color 0.2s",
-              }}
-              onMouseOver={(e) => (e.target.style.color = "#be123c")}
-              onMouseOut={(e) => (e.target.style.color = "#e11d48")}
+              className="text-pink-600 font-semibold hover:text-pink-700 transition"
             >
               Create Account
             </a>
@@ -190,7 +64,8 @@ const Login = () => {
         </div>
       </div>
 
-      <style>{`
+      {/* Animations */}
+      <style jsx>{`
         @keyframes slide-in-left {
           from {
             transform: translateX(100%);
@@ -210,6 +85,12 @@ const Login = () => {
             transform: translateX(0);
             opacity: 1;
           }
+        }
+        .animate-slide-in-left {
+          animation: slide-in-left 0.8s ease-out forwards;
+        }
+        .animate-slide-in-right {
+          animation: slide-in-right 0.8s ease-out forwards;
         }
       `}</style>
     </div>

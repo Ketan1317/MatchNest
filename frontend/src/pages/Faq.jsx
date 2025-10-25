@@ -39,191 +39,61 @@ const Faq = () => {
   };
 
   return (
-    <div
-      style={{
-        backgroundColor: "#f7f7f7",
-        minHeight: "100vh",
-        marginTop: "69px",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
+    <div className="bg-white overflow-x-hidden">
       <Header />
 
-      <section
-        style={{
-          position: "relative",
-          background: "linear-gradient(90deg, #ec4899, #f43f5e)",
-          color: "#ffffff",
-
-          textAlign: "center",
-          padding: "150px 20px",
-        }}
-      >
-        <div style={{ position: "relative", zIndex: 10 }}>
-          <h1
-            style={{
-              fontSize: "2.9rem",
-              fontFamily: "Michroma, sans-serif",
-              fontWeight: "800",
-              marginBottom: "1.5rem",
-            }}
-          >
-            Frequently Asked Questions
-          </h1>
-          <p
-            style={{
-              fontSize: "1.25rem",
-              maxWidth: "800px",
-              margin: "0 auto",
-              lineHeight: "1.8",
-            }}
-          >
-            Got questions about MatchNest? We’ve got answers! Explore our FAQs
-            to learn more about how we help you find meaningful connections.
-          </p>
-        </div>
+      {/* Hero Section */}
+      <section className="mt-[69px] h-[48vh] flex flex-col justify-center items-center text-center px-6 bg-gradient-to-r from-pink-500 to-red-500 rounded-b-[50px] shadow-xl">
+        <h1 className="text-4xl md:text-5xl font-extrabold mb-6 font-michroma text-white drop-shadow-lg">
+          Frequently Asked <span className="font-rocksalt">Questions</span>
+        </h1>
+        <p className="text-lg md:text-xl max-w-3xl text-white font-medium drop-shadow-sm leading-relaxed">
+          Got questions about MatchNest? Explore our FAQs to learn more about how we help you find meaningful connections.
+        </p>
       </section>
 
-      {/* FAQ Section */}
-      <section
-        style={{
-          padding: "80px 20px",
-          maxWidth: "900px",
-          margin: "0 auto",
-          fontFamily: "sans-serif",
-        }}
-      >
-        
-
-        <div
-          style={{ display: "flex", flexDirection: "column", gap: "1.2rem" }}
-        >
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              style={{
-                background: "#fff",
-                border: "1px solid #e5e7eb",
-                borderRadius: "14px",
-                boxShadow:
-                  openIndex === index
-                    ? "0 6px 18px rgba(236,72,153,0.25)"
-                    : "0 4px 10px rgba(0,0,0,0.08)",
-                transition: "all 0.3s ease-in-out",
-                overflow: "hidden",
-              }}
+      {/* FAQ Cards */}
+      <section className="py-20 px-6 flex flex-col items-center gap-8 bg-gradient-to-b from-white to-pink-50">
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className={`w-full max-w-3xl bg-white rounded-2xl border transition-all duration-300 overflow-hidden shadow-md ${
+              openIndex === index ? "border-pink-300 shadow-lg" : "border-pink-100"
+            }`}
+          >
+            <button
+              onClick={() => toggleFaq(index)}
+              className="w-full flex justify-between items-center p-6 cursor-pointer focus:outline-none"
             >
-              <button
-                onClick={() => toggleFaq(index)}
-                style={{
-                  width: "100%",
-                  padding: "18px 22px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  background: "none",
-                  border: "none",
-                  cursor: "pointer",
-                }}
-              >
-                <h3
-                  style={{
-                    fontSize: "18px",
-                    fontWeight: "700",
-                    color: "#1f2937",
-                    textAlign: "left",
-                  }}
-                >
-                  {faq.question}
-                </h3>
-                <FaAngleUp
-                  style={{
-                    color: "#ec4899",
-                    fontSize: "1.5rem",
-                    transition: "transform 0.3s ease",
-                    transform:
-                      openIndex === index ? "rotate(180deg)" : "rotate(0deg)",
-                  }}
-                />
-              </button>
-
-              <div
-                style={{
-                  maxHeight: openIndex === index ? "500px" : "0",
-                  opacity: openIndex === index ? "1" : "0",
-                  transition:
-                    "max-height 0.4s ease, opacity 0.4s ease, padding 0.3s ease",
-                  padding: openIndex === index ? "0 22px 18px" : "0 22px 0",
-                }}
-              >
-                <p
-                  style={{
-                    color: "#4b5563",
-                    lineHeight: "1.7",
-                    fontSize: "16px",
-                  }}
-                >
-                  {faq.answer}
-                </p>
-              </div>
+              <h3 className="text-lg md:text-xl font-semibold text-pink-700">{faq.question}</h3>
+              <FaAngleUp
+                className={`text-pink-500 text-xl md:text-2xl transform transition-transform duration-300 ${
+                  openIndex === index ? "rotate-180" : "rotate-0"
+                }`}
+              />
+            </button>
+            <div
+              className={`px-6 transition-all duration-500 ${
+                openIndex === index ? "max-h-96 py-4 opacity-100" : "max-h-0 py-0 opacity-0"
+              }`}
+            >
+              <p className="text-gray-600 text-base md:text-lg leading-relaxed font-medium">{faq.answer}</p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </section>
 
-      <section
-        style={{
-          padding: "80px 20px",
-          textAlign: "center",
-        }}
-      >
-        <h2
-          style={{
-            fontSize: "2rem",
-            fontWeight: "700",
-            background: "linear-gradient(90deg, #ec4899, #f43f5e)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            marginBottom: "1.5rem",
-          }}
-        >
+      {/* CTA Section */}
+      <section className="py-20 px-6 text-center bg-gradient-to-b from-pink-50 to-white">
+        <h2 className="text-3xl md:text-4xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-red-500 font-michroma">
           Still Have Questions?
         </h2>
-        <p
-          style={{
-            fontSize: "1.125rem",
-            color: "#4b5563",
-            maxWidth: "600px",
-            margin: "0 auto",
-            marginBottom: "2rem",
-          }}
-        >
-          Reach out to our support team or join MatchNest today to start your
-          journey to meaningful connections!
+        <p className="text-gray-600 max-w-3xl mx-auto mb-8 text-lg md:text-xl font-medium leading-relaxed">
+          Reach out to our support team or join MatchNest today to start your journey to meaningful connections!
         </p>
         <a
           href="/signup"
-          style={{
-            display: "inline-block",
-            background: "linear-gradient(to right, #f43f5e, #db2777)",
-            color: "#ffffff",
-            fontWeight: "600",
-            padding: "0.75rem 2rem",
-            borderRadius: "9999px",
-            textDecoration: "none",
-            transition:
-              "background 0.3s ease-in-out, transform 0.3s ease-in-out",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background =
-              "linear-gradient(to right, #e11d48, #be185d)";
-            e.target.style.transform = "scale(1.05)";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background =
-              "linear-gradient(to right, #f43f5e, #db2777)";
-            e.target.style.transform = "scale(1)";
-          }}
+          className="inline-block bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold py-4 px-10 rounded-full shadow-lg transition-transform duration-300 hover:scale-105 hover:from-red-600 hover:to-pink-700"
         >
           Get Started
         </a>

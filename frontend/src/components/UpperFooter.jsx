@@ -1,69 +1,23 @@
 import React from "react";
 
-
 const UpperFooter = () => {
- 
   return (
-    <section
-      style={{
-        height: "40vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        textAlign: "center",
-        padding: "40px",
-      }}
-    >
-      <div style={{ maxWidth: "700px" }}>
-        <h2
-          style={{
-            fontSize: "2.2rem",
-            fontWeight: "bold",
-            background: "linear-gradient(90deg, #f43f5e, #db2777)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            marginBottom: "15px",
-          }}
-        >
+    <section className="h-[40vh] flex items-center justify-center text-center px-6 md:px-10">
+      <div className="max-w-[700px]">
+        <h2 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-transparent mb-4">
           Why waste time? 💕
         </h2>
 
-        <p
-          style={{
-            fontSize: "1.1rem",
-            color: "#444",
-            fontWeight:"500",
-            lineHeight: "1.6",
-            marginBottom: "25px",
-          }}
-        >
+        <p className="text-gray-700 font-medium text-[1.1rem] leading-relaxed mb-6">
           Our website is faster than your crush replying to texts (yep, that fast 🚀).
           <br />
-          Just sign up, swipe, chat, and boom – love is in the air.  
+          Just sign up, swipe, chat, and boom – love is in the air.
+          <br />
           No complicated steps, no boring waiting. Just pure vibes ✨
         </p>
 
         <button
-          style={{
-            marginTop: "10px",
-            padding: "12px 24px",
-            background: "linear-gradient(to right, #f43f5e, #ec4899)",
-            color: "white",
-            borderRadius: "9999px",
-            fontWeight: "600",
-            cursor: "pointer",
-            transition: "transform 0.2s ease, box-shadow 0.3s ease",
-            boxShadow: "0px 4px 10px rgba(0,0,0,0.15)",
-            border: "none",
-          }}
-          onMouseOver={(e) => {
-            e.target.style.transform = "scale(1.05)";
-            e.target.style.boxShadow = "0px 6px 14px rgba(0,0,0,0.2)";
-          }}
-          onMouseOut={(e) => {
-            e.target.style.transform = "scale(1)";
-            e.target.style.boxShadow = "0px 4px 10px rgba(0,0,0,0.15)";
-          }}
+          className="mt-3 px-6 py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-semibold rounded-full shadow-md hover:scale-105 hover:shadow-lg transform transition-all duration-300"
         >
           Get Started Now 🚀
         </button>
