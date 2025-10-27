@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../components/Header";
+import { Copy, Check } from "lucide-react";
 import Footer from "../components/Footer";
 import Peer from "peerjs";
 
@@ -9,10 +10,12 @@ const VideoCall = () => {
   const [remotePeerId, setRemotePeerId] = useState("");
   const [currentCall, setCurrentCall] = useState(null);
   const [copied, setCopied] = useState(false);
+  const [autoCalled, setAutoCalled] = useState(false); // To prevent multiple auto-calls
 
   const peerInstance = useRef(null);
   const localVideoRef = useRef(null);
   const remoteVideoRef = useRef(null);
+  const localStreamRef = useRef(null);
 
   const location = useLocation();
 
@@ -22,7 +25,7 @@ const VideoCall = () => {
     peer.on("open", (id) => {
       setPeerId(id);
 
-      // If URL has ?peerId=XXX, prefill remotePeerId
+      // Check if there’s a ?peerId= param (for auto-connect)
       const params = new URLSearchParams(location.search);
       const incomingPeerId = params.get("peerId");
       if (incomingPeerId && incomingPeerId !== id) {
@@ -30,46 +33,64 @@ const VideoCall = () => {
       }
     });
 
+    // When someone calls this peer
     peer.on("call", (call) => {
       navigator.mediaDevices
         .getUserMedia({ audio: true, video: true })
         .then((stream) => {
+          localStreamRef.current = stream;
           if (localVideoRef.current) localVideoRef.current.srcObject = stream;
           call.answer(stream);
           setCurrentCall(call);
 
           call.on("stream", (remoteStream) => {
-            if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+            if (remoteVideoRef.current)
+              remoteVideoRef.current.srcObject = remoteStream;
           });
 
-          call.on("close", () => {
-            if (remoteVideoRef.current) remoteVideoRef.current.srcObject = null;
-            setCurrentCall(null);
-          });
+          call.on("close", () => endCall());
         })
         .catch((err) => console.error("Error accessing camera/mic:", err));
     });
 
     peerInstance.current = peer;
+
+    return () => {
+      // Cleanup on unmount
+      peer.destroy();
+      if (localStreamRef.current) {
+        localStreamRef.current.getTracks().forEach((track) => track.stop());
+      }
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
+  // Automatically start a call if peerId is in URL and we have our peerId ready
+  useEffect(() => {
+    if (peerId && remotePeerId && !autoCalled) {
+      setAutoCalled(true);
+      startCall(remotePeerId);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [peerId, remotePeerId, autoCalled]);
+
   const startCall = (id) => {
+    if (!id) return alert("Please enter a valid Peer ID!");
     navigator.mediaDevices
       .getUserMedia({ audio: true, video: true })
       .then((stream) => {
+        localStreamRef.current = stream;
         if (localVideoRef.current) localVideoRef.current.srcObject = stream;
 
         const call = peerInstance.current.call(id, stream);
         setCurrentCall(call);
 
         call.on("stream", (remoteStream) => {
-          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = remoteStream;
+          if (remoteVideoRef.current)
+            remoteVideoRef.current.srcObject = remoteStream;
         });
 
-        call.on("close", () => {
-          if (remoteVideoRef.current) remoteVideoRef.current.srcObject = null;
-          setCurrentCall(null);
-        });
+        call.on("close", () => endCall());
       })
       .catch((err) => console.error("Error accessing camera/mic:", err));
   };
@@ -78,13 +99,27 @@ const VideoCall = () => {
     if (currentCall) {
       currentCall.close();
       setCurrentCall(null);
-      if (remoteVideoRef.current) remoteVideoRef.current.srcObject = null;
+    }
+
+    if (remoteVideoRef.current) remoteVideoRef.current.srcObject = null;
+    if (localVideoRef.current) localVideoRef.current.srcObject = null;
+
+    if (localStreamRef.current) {
+      localStreamRef.current.getTracks().forEach((track) => track.stop());
+    }
+  };
+
+  const copyPeerId = () => {
+    if (peerId) {
+      navigator.clipboard.writeText(peerId);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
     }
   };
 
   const shareLink = () => {
     if (!peerId) return;
-    const baseUrl = "https://your-site-link.com/vc"; // Replace after deployment
+    const baseUrl = "https://match-nest-zeta.vercel.app/vc";
     const fullLink = `${baseUrl}?peerId=${peerId}`;
 
     navigator.clipboard.writeText(fullLink).then(() => {
@@ -103,8 +138,9 @@ const VideoCall = () => {
           MatchNest Video Call 📽️
         </h1>
         <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-sm">
-          Connect instantly with your matches. Start meaningful conversations, 
-          have fun, and explore connections in real-time with secure video calls.
+          Connect instantly with your matches. Start meaningful conversations,
+          have fun, and explore connections in real-time with secure video
+          calls.
         </p>
       </section>
 
@@ -112,7 +148,29 @@ const VideoCall = () => {
       <div className="flex flex-col items-center mt-10 gap-4 px-4">
         <div className="p-4 bg-white rounded-2xl shadow-md border border-pink-100 w-full max-w-md text-center">
           <p className="text-sm text-gray-500">Your Match ID</p>
-          <p className="text-lg font-mono font-semibold text-pink-600 mt-1">{peerId || "Loading..."}</p>
+          <div className="flex items-center justify-center gap-2 mt-1">
+            <p className="text-lg font-mono font-semibold text-pink-600">
+              {peerId || "Loading..."}
+            </p>
+            <button
+              onClick={copyPeerId}
+              className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-pink-200 bg-white 
+             hover:bg-pink-50 text-pink-600 font-medium text-sm shadow-sm 
+             hover:shadow-md transition-all duration-300 active:scale-95"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4 text-green-500" />
+                  <span>Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-3 w-full max-w-md">
@@ -125,14 +183,14 @@ const VideoCall = () => {
           />
           <button
             onClick={() => startCall(remotePeerId)}
-            className="px-5 py-2 bg-pink-500 hover:bg-pink-600 text-white rounded-lg font-semibold active:scale-95 transition"
+            className="px-5 py-2 bg-green-600 cursor-pointer hover:bg-green-700 text-white rounded-lg font-semibold active:scale-95 transition"
           >
             Call
           </button>
           <button
             onClick={endCall}
             disabled={!currentCall}
-            className={`px-5 py-2 bg-gray-300 hover:bg-gray-400 text-white rounded-lg font-semibold active:scale-95 transition ${
+            className={`px-5 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold active:scale-95 transition ${
               !currentCall ? "opacity-50 cursor-not-allowed" : ""
             }`}
           >
@@ -140,37 +198,39 @@ const VideoCall = () => {
           </button>
         </div>
 
-        {/* Share Button */}
+        {/* Share Button
         <button
           onClick={shareLink}
           className="mt-4 px-5 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold active:scale-95 transition"
         >
-          {copied ? "Link Copied!" : "Share My ID"}
-        </button>
+          {copied ? "Link Copied!" : "Share Link"}
+        </button> */}
       </div>
 
       {/* Video */}
-      <div className="flex flex-wrap justify-center gap-8 mt-10 px-4 mb-10">
-        <div className="flex flex-col items-center bg-white rounded-2xl shadow-md p-4 border border-pink-100">
-          <h3 className="text-pink-600 mb-2 font-medium">Your Video</h3>
-          <video
-            ref={localVideoRef}
-            autoPlay
-            playsInline
-            muted
-            className="w-72 h-48 rounded-xl border border-pink-200 object-cover bg-black"
-          />
-        </div>
-        <div className="flex flex-col items-center bg-white rounded-2xl shadow-md p-4 border border-pink-100">
-          <h3 className="text-pink-600 mb-2 font-medium">Match Video</h3>
-          <video
-            ref={remoteVideoRef}
-            autoPlay
-            playsInline
-            className="w-72 h-48 rounded-xl border border-pink-200 object-cover bg-black"
-          />
-        </div>
-      </div>
+     <div className="flex mb-20 flex-wrap justify-center gap-10 mt-10 px-6 mb-16">
+  <div className="flex flex-col items-center bg-white rounded-3xl shadow-lg p-6 border border-pink-100 transition-all hover:shadow-xl hover:-translate-y-1">
+    <h3 className="text-pink-600 mb-3 font-semibold text-lg">Your Video</h3>
+    <video
+      ref={localVideoRef}
+      autoPlay
+      playsInline
+      muted
+      className="w-[420px] h-[300px] md:w-[520px] md:h-[360px] rounded-2xl border border-pink-200 object-cover bg-black shadow-inner"
+    />
+  </div>
+
+  <div className="flex flex-col items-center bg-white rounded-3xl shadow-lg p-6 border border-pink-100 transition-all hover:shadow-xl hover:-translate-y-1">
+    <h3 className="text-pink-600 mb-3 font-semibold text-lg">Match Video</h3>
+    <video
+      ref={remoteVideoRef}
+      autoPlay
+      playsInline
+      className="w-[420px] h-[300px] md:w-[520px] md:h-[360px] rounded-2xl border border-pink-200 object-cover bg-black shadow-inner"
+    />
+  </div>
+</div>
+
 
       <Footer />
     </div>
