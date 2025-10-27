@@ -6,9 +6,9 @@ const navItems = [
   { name: "Dashboard", path: "/" },
   { name: "Matches", path: "/matches" },
   { name: "Chat", path: "/chat" },
+  {name:"Video Call",path:"/vc"},
   { name: "Profile", path: "/profile" },
   { name: "About", path: "/about" },
-  {name:"Video Call",path:"/vc"},
   {name:"Faq",path:"/faq"},
 ];
 

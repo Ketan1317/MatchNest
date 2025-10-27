@@ -29,7 +29,6 @@ const VideoCall = () => {
       setPeerId(id);
     });
 
-    // Handle incoming calls
     peer.on("call", async (call) => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({

@@ -8,13 +8,44 @@ import img2 from "../assets/hey1.jpg";
 import img3 from "../assets/hey4.jpg";
 import img4 from "../assets/hey3.jpg";
 import img5 from "../assets/hey2.jpg";
+import garvu from "../assets/garvuuuu.jpg"
 
 const people = [
-  { name: "Sophia", age: 24, location: "Mumbai", bio: "Coffee lover ☕ | Traveller ✈️ | Looking for meaningful connections ❤️", img: img1 },
-  { name: "Aarav", age: 27, location: "Delhi", bio: "Tech enthusiast 💻 | Music 🎶 | Swipe right if you love dogs 🐶", img: img2 },
-  { name: "Ananya", age: 25, location: "Bangalore", bio: "Foodie 🍜 | Loves movies 🎬 | Dreamer 🌸", img: img3 },
-  { name: "Rohan", age: 26, location: "Pune", bio: "Adventurer 🏔️ | Fitness freak 🏋️‍♂️ | Always up for a challenge!", img: img4 },
-  { name: "Meera", age: 23, location: "Chennai", bio: "Artist 🎨 | Musician 🎶 | Believes in positivity 🌟", img: img5 },
+  {
+    name: "Garvuuuu",
+    age: 24,
+    location: "Sonipat",
+    bio: "Coffee lover ☕ | Traveller ✈️ | Looking for meaningful connections ❤️",
+    img: garvu,
+  },
+  {
+    name: "Aarav",
+    age: 27,
+    location: "Delhi",
+    bio: "Tech enthusiast 💻 | Music 🎶 | Swipe right if you love dogs 🐶",
+    img: img2,
+  },
+  {
+    name: "Ananya",
+    age: 25,
+    location: "Bangalore",
+    bio: "Foodie 🍜 | Loves movies 🎬 | Dreamer 🌸",
+    img: img3,
+  },
+  {
+    name: "Rohan",
+    age: 26,
+    location: "Pune",
+    bio: "Adventurer 🏔️ | Fitness freak 🏋️‍♂️ | Always up for a challenge!",
+    img: img4,
+  },
+  {
+    name: "Meera",
+    age: 23,
+    location: "Chennai",
+    bio: "Artist 🎨 | Musician 🎶 | Believes in positivity 🌟",
+    img: img5,
+  },
 ];
 
 const Match = () => {
@@ -76,31 +107,41 @@ const Match = () => {
   }
 
   return (
-    <div className="flex select-none
- flex-col min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div
+      className="flex select-none
+ flex-col min-h-screen bg-gradient-to-b from-pink-50 to-white"
+    >
       <Header />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-pink-500 to-red-500 text-white text-center py-24 md:py-32 mb-10 rounded-b-3xl shadow-lg">
+      <section className="bg-gradient-to-r mt-[70px] from-pink-500 to-red-500 text-white my-16 text-center py-24 md:py-32 mb-10 rounded-b-3xl shadow-lg">
         <h1 className="text-3xl md:text-5xl font-extrabold mb-4 font-michroma drop-shadow-md">
           Find Your Match Today! 💕
         </h1>
         <p className="text-base md:text-lg max-w-3xl mx-auto leading-relaxed font-medium drop-shadow-sm">
-          Swipe through profiles and connect with people who share your vibes. Start your journey to love or friendship with MatchNest!
+          Swipe through profiles and connect with people who share your vibes.
+          Start your journey to love or friendship with MatchNest!
         </p>
       </section>
 
       {/* Swipe Cards */}
       <div className="flex justify-center px-4 relative h-[80vh]">
-        {people.slice(currentIndex + 1, currentIndex + 3).reverse().map((person, i) => (
-          <div
-            key={i}
-            className={`absolute w-full max-w-md h-full bg-gradient-to-br from-white to-pink-50 rounded-2xl shadow-xl border border-pink-100`}
-            style={{ top: `${i * 10}px`, scale: 0.95 }}
-          >
-            <img src={person.img} alt={person.name} className="w-full h-1/2 object-cover border-b-2 border-pink-100" />
-          </div>
-        ))}
+        {people
+          .slice(currentIndex + 1, currentIndex + 3)
+          .reverse()
+          .map((person, i) => (
+            <div
+              key={i}
+              className={`absolute w-full max-w-md h-full bg-gradient-to-br from-white to-pink-50 rounded-2xl shadow-xl border border-pink-100`}
+              style={{ top: `${i * 10}px`, scale: 0.95 }}
+            >
+              <img
+                src={person.img}
+                alt={person.name}
+                className="w-full h-1/2 object-cover border-b-2 border-pink-100"
+              />
+            </div>
+          ))}
 
         <div
           ref={cardRef}
@@ -110,12 +151,22 @@ const Match = () => {
           onPointerUp={handlePointerUp}
           onPointerLeave={handlePointerUp}
         >
-          <img src={people[currentIndex].img} alt={people[currentIndex].name} className="w-full h-1/2 object-cover border-b-2 border-pink-100" />
+          <img
+            src={people[currentIndex].img}
+            alt={people[currentIndex].name}
+            className="w-full h-1/2 object-cover border-b-2 border-pink-100"
+          />
           <div className="flex flex-col justify-between p-5 h-1/2">
             <div>
-              <h2 className="text-2xl font-bold text-pink-800 mb-1 capitalize">{people[currentIndex].name}, {people[currentIndex].age}</h2>
-              <p className="text-gray-600 italic mb-2">📍 {people[currentIndex].location}</p>
-              <p className="text-gray-700 font-medium leading-relaxed">{people[currentIndex].bio}</p>
+              <h2 className="text-2xl font-bold text-pink-800 mb-1 capitalize">
+                {people[currentIndex].name}, {people[currentIndex].age}
+              </h2>
+              <p className="text-gray-600 italic mb-2">
+                📍 {people[currentIndex].location}
+              </p>
+              <p className="text-gray-700 font-medium leading-relaxed">
+                {people[currentIndex].bio}
+              </p>
             </div>
 
             <div className="flex justify-around mt-6">

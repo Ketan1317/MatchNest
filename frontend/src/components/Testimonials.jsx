@@ -72,7 +72,7 @@ const TestimonialSlider = () => {
             key={i}
             className="flex-shrink-0 w-full h-[100vh] relative flex items-center justify-center"
           >
-            <img
+             <img
               src={t.img}
               alt={t.name}
               className="absolute inset-0 w-full h-full object-cover"
