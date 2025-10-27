@@ -76,7 +76,8 @@ const Match = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-b from-pink-50 to-white">
+    <div className="flex select-none
+ flex-col min-h-screen bg-gradient-to-b from-pink-50 to-white">
       <Header />
 
       {/* Hero Section */}
