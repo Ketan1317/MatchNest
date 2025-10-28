@@ -82,7 +82,7 @@ const Profile = () => {
         </div>
 
         <form onSubmit={handleSubmit} className="grid gap-8">
-          {/* Personal Info */}
+          
           <div>
             <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
               Personal Information
