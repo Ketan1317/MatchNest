@@ -48,10 +48,10 @@ const Profile = () => {
 
       <section className="max-w-4xl mx-auto mt-32 mb-20 p-10 sm:p-12 rounded-3xl bg-white shadow-2xl transform transition-all animate-float hover:scale-[1.02] hover:shadow-3xl">
         <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3 font-michroma text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-pink-500">
-          Create Your Perfect Profile 💍
+          Craft Your Perfect Profile ✨
         </h2>
         <p className="text-center text-gray-500 text-base mb-10 font-inter">
-          Fill in your details to create a vibrant profile that showcases who you are!
+          Tell your story beautifully — let others see the real you!
         </p>
 
         {/* Profile Image */}
@@ -87,14 +87,14 @@ const Profile = () => {
         <form onSubmit={handleSubmit} className="grid gap-8">
           {/* Personal Info */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
-              Personal Information
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter flex items-center gap-2">
+              👤 Personal Information
             </h3>
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 name="fullName"
-                placeholder="Full Name"
+                placeholder="Enter your full name"
                 value={formData.fullName}
                 onChange={handleChange}
                 required
@@ -119,7 +119,7 @@ const Profile = () => {
             <input
               type="number"
               name="age"
-              placeholder="Age"
+              placeholder="Enter your age"
               value={formData.age}
               onChange={handleChange}
               required
@@ -136,14 +136,14 @@ const Profile = () => {
 
           {/* Contact Details */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
-              Contact Details
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter flex items-center gap-2">
+              📞 Contact Information
             </h3>
             <div className="flex flex-col gap-4">
               <input
                 type="email"
                 name="email"
-                placeholder="Email Address"
+                placeholder="Enter your email address"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -152,7 +152,7 @@ const Profile = () => {
               <input
                 type="tel"
                 name="phone"
-                placeholder="Phone Number"
+                placeholder="Enter your phone number"
                 value={formData.phone}
                 onChange={handleChange}
                 required
@@ -163,12 +163,12 @@ const Profile = () => {
 
           {/* Additional Info */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
-              Additional Information
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter flex items-center gap-2">
+              🌸 Additional Information
             </h3>
             <textarea
               name="address"
-              placeholder="Your Address"
+              placeholder="Enter your full address"
               value={formData.address}
               onChange={handleChange}
               className="w-full p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition h-24"
@@ -177,7 +177,7 @@ const Profile = () => {
               <input
                 type="text"
                 name="religion"
-                placeholder="Religion"
+                placeholder="Enter your religion (optional)"
                 value={formData.religion}
                 onChange={handleChange}
                 className="flex-1 p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition"
@@ -185,7 +185,7 @@ const Profile = () => {
               <input
                 type="text"
                 name="caste"
-                placeholder="Caste (Optional)"
+                placeholder="Caste or community (optional)"
                 value={formData.caste}
                 onChange={handleChange}
                 className="flex-1 p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition"
@@ -195,14 +195,14 @@ const Profile = () => {
 
           {/* Professional Info */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
-              Professional & Personal Interests
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter flex items-center gap-2">
+              💼 Career & Interests
             </h3>
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 name="profession"
-                placeholder="Profession"
+                placeholder="Your current profession"
                 value={formData.profession}
                 onChange={handleChange}
                 className="flex-1 p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition"
@@ -210,7 +210,7 @@ const Profile = () => {
               <input
                 type="text"
                 name="education"
-                placeholder="Education"
+                placeholder="Your highest qualification"
                 value={formData.education}
                 onChange={handleChange}
                 className="flex-1 p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition"
@@ -218,7 +218,7 @@ const Profile = () => {
             </div>
             <textarea
               name="hobbies"
-              placeholder="Hobbies & Interests (Optional)"
+              placeholder="List your hobbies and interests"
               value={formData.hobbies}
               onChange={handleChange}
               className="w-full p-4 mt-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition h-24"
@@ -227,12 +227,12 @@ const Profile = () => {
 
           {/* Bio */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
-              About You
+            <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter flex items-center gap-2">
+              💖 About You
             </h3>
             <textarea
               name="bio"
-              placeholder="Write a short bio about yourself (tell us your story!)"
+              placeholder="Share a few words about yourself — your dreams, passions, and story!"
               value={formData.bio}
               onChange={handleChange}
               className="w-full p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition h-36"
@@ -243,12 +243,12 @@ const Profile = () => {
             type="submit"
             className="px-10 py-5 bg-gradient-to-r from-pink-600 to-pink-500 text-white text-lg font-bold rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
-            Save Your Profile
+            💎 Save My Profile
           </button>
         </form>
       </section>
 
-      {/* Animations */}
+      {/* Floating animation */}
       <style jsx>{`
         @keyframes float {
           0% {
