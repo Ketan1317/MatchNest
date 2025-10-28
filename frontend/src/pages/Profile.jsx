@@ -56,26 +56,29 @@ const Profile = () => {
 
         {/* Profile Image */}
         <div className="text-center mb-10">
-          <label className="inline-block w-44 h-44 rounded-full overflow-hidden border-4 border-pink-500 cursor-pointer relative shadow-lg transition-transform duration-300 hover:scale-105">
-            <img
-              src={
-                formData.previewUrl || "https://via.placeholder.com/180?text=Upload+Photo"
-              }
-              alt="Profile"
-              className="w-full h-full object-cover transition-transform duration-300"
-            />
-            <div className="absolute bottom-0 w-full bg-gray-700 text-white text-sm py-2 flex items-center justify-center gap-2 font-semibold">
-              <FaImage />
-            </div>
-          </label>
-          <input
-            type="file"
-            id="profileImage"
-            name="profileImage"
-            accept="image/*"
-            onChange={handleChange}
-            className="hidden"
-          />
+          <label
+  htmlFor="profileImage"   // ✅ Added this line
+  className="inline-block w-44 h-44 rounded-full overflow-hidden border-4 border-pink-500 cursor-pointer relative shadow-lg transition-transform duration-300 hover:scale-105"
+>
+  <img
+    src={formData.previewUrl || "https://via.placeholder.com/180?text=Upload+Photo"}
+    alt="Profile"
+    className="w-full h-full object-cover transition-transform duration-300"
+  />
+  <div className="absolute bottom-0 w-full bg-gray-700 text-white text-sm py-2 flex items-center justify-center gap-2 font-semibold">
+    <FaImage />
+  </div>
+</label>
+
+<input
+  type="file"
+  id="profileImage"
+  name="profileImage"
+  accept="image/*"
+  onChange={handleChange}
+  className="hidden"
+/>
+
         </div>
 
         <form onSubmit={handleSubmit} className="grid gap-8">
