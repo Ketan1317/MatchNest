@@ -43,11 +43,11 @@ const Profile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-b from-pink-50 to-white">
       <Header />
 
-      <section className="max-w-4xl mx-auto mt-32 mb-20 p-12 rounded-3xl bg-white shadow-2xl transform transition-all animate-float hover:scale-[1.02] hover:shadow-3xl">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-5 font-michroma text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-pink-500">
+      <section className="max-w-4xl mx-auto mt-32 mb-20 p-10 sm:p-12 rounded-3xl bg-white shadow-2xl transform transition-all animate-float hover:scale-[1.02] hover:shadow-3xl">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-3 font-michroma text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-pink-500">
           Create Your Perfect Profile 💍
         </h2>
         <p className="text-center text-gray-500 text-base mb-10 font-inter">
@@ -57,28 +57,31 @@ const Profile = () => {
         {/* Profile Image */}
         <div className="text-center mb-10">
           <label
-  htmlFor="profileImage"   // ✅ Added this line
-  className="inline-block w-44 h-44 rounded-full overflow-hidden border-4 border-pink-500 cursor-pointer relative shadow-lg transition-transform duration-300 hover:scale-105"
->
-  <img
-    src={formData.previewUrl || "https://via.placeholder.com/180?text=Upload+Photo"}
-    alt="Profile"
-    className="w-full h-full object-cover transition-transform duration-300"
-  />
-  <div className="absolute bottom-0 w-full bg-gray-700 text-white text-sm py-2 flex items-center justify-center gap-2 font-semibold">
-    <FaImage />
-  </div>
-</label>
+            htmlFor="profileImage"
+            className="inline-block w-44 h-44 rounded-full overflow-hidden border-4 border-pink-500 cursor-pointer relative shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+          >
+            <img
+              src={
+                formData.previewUrl ||
+                "https://via.placeholder.com/180?text=Upload+Photo"
+              }
+              alt="Profile"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-0 w-full bg-gray-700 bg-opacity-75 text-white text-sm py-2 flex items-center justify-center gap-2 font-semibold">
+              <FaImage />
+              Upload
+            </div>
+          </label>
 
-<input
-  type="file"
-  id="profileImage"
-  name="profileImage"
-  accept="image/*"
-  onChange={handleChange}
-  className="hidden"
-/>
-
+          <input
+            type="file"
+            id="profileImage"
+            name="profileImage"
+            accept="image/*"
+            onChange={handleChange}
+            className="hidden"
+          />
         </div>
 
         <form onSubmit={handleSubmit} className="grid gap-8">
@@ -87,7 +90,7 @@ const Profile = () => {
             <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
               Personal Information
             </h3>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 name="fullName"
@@ -112,7 +115,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className="flex gap-4 flex-wrap">
+          <div className="flex flex-col sm:flex-row gap-4">
             <input
               type="number"
               name="age"
@@ -170,7 +173,7 @@ const Profile = () => {
               onChange={handleChange}
               className="w-full p-4 border border-gray-200 rounded-xl outline-none shadow-sm focus:border-pink-500 focus:ring focus:ring-pink-200 transition h-24"
             />
-            <div className="flex gap-4 flex-wrap mt-4">
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <input
                 type="text"
                 name="religion"
@@ -195,7 +198,7 @@ const Profile = () => {
             <h3 className="text-xl font-semibold text-gray-800 mb-4 font-inter">
               Professional & Personal Interests
             </h3>
-            <div className="flex gap-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 name="profession"
@@ -238,7 +241,7 @@ const Profile = () => {
 
           <button
             type="submit"
-            className="px-10 py-5 bg-gradient-to-r from-pink-600 to-pink-500 text-white text-lg font-bold rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 hover:shadow-2xl"
+            className="px-10 py-5 bg-gradient-to-r from-pink-600 to-pink-500 text-white text-lg font-bold rounded-xl shadow-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl"
           >
             Save Your Profile
           </button>
@@ -249,13 +252,13 @@ const Profile = () => {
       <style jsx>{`
         @keyframes float {
           0% {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
           }
           50% {
-            transform: translateY(-15px);
+            transform: translateY(-14px);
           }
           100% {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
           }
         }
         .animate-float {
