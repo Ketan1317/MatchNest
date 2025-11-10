@@ -1,5 +1,5 @@
 import React from "react";
-import videoBg from "../assets/okokFinal.mp4";
+import videoBg from "/okokFinal.mp4";
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion";
 

@@ -3,12 +3,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import toast from "react-hot-toast";
 
-import img1 from "../assets/hey.jpg";
-import img2 from "../assets/hey1.jpg";
-import img3 from "../assets/hey4.jpg";
-import img4 from "../assets/hey3.jpg";
-import img5 from "../assets/hey2.jpg";
-import garvu from "../assets/garvuuuu.jpg"
+// import img1 from "/hey.jpg";
+import img2 from "/hey1.jpg";
+import img3 from "/hey4.jpg";
+import img4 from "/hey3.jpg";
+import img5 from "/hey2.jpg";
+import garvu from "/garvuuuu.jpg"
 
 const people = [
   {

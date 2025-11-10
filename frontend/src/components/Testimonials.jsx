@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
-import avatar1 from "../assets/img1.jpg";
-import avatar2 from "../assets/img2.jpg";
-import avatar3 from "../assets/img3.jpg";
-import avatar4 from "../assets/img4.jpg";
-import avatar5 from "../assets/img5.jpg";
-import avatar6 from "../assets/img6.jpg";
+import avatar1 from "/img1.jpg";
+import avatar2 from "/img2.jpg";
+import avatar3 from "/img3.jpg";
+import avatar4 from "/img4.jpg";
+import avatar5 from "/img5.jpg";
+import avatar6 from "/img6.jpg";
 
 const testimonials = [
   {

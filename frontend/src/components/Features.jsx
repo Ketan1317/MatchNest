@@ -1,12 +1,12 @@
 import React from "react";
-import Couple from "../assets/img1.jpg";
-import VideoCall from "../assets/img2.jpg";
-import ChatImg from "../assets/img4.jpg";
-import VoiceCall from "../assets/img3.jpg";
-import SwipeImg from "../assets/img6.jpg";
-import ParentControl from "../assets/img5.jpg";
-import leftHand from "../assets/left.png";
-import rightHand from "../assets/right.png";
+import Couple from "/img1.jpg";
+import VideoCall from "/img2.jpg";
+import ChatImg from "/img4.jpg";
+import VoiceCall from "/img3.jpg";
+import SwipeImg from "/img6.jpg";
+import ParentControl from "/img5.jpg";
+import leftHand from "/left.png";
+import rightHand from "/right.png";
 
 const Features = () => {
   const features = [
