@@ -7,7 +7,7 @@ import { FaVideo, FaPhone } from "react-icons/fa";
 import bg from "../assets/okkk.jpg";
 import img1 from "../assets/hey.jpg";
 
-const socket = io("http://localhost:3001");
+const socket = io("https://matchnest-cdcy.onrender.com/");
 
 const Chat = () => {
   const [username, setUsername] = useState("");
